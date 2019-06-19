@@ -1,0 +1,52 @@
+body{
+    background-image: url(../images/background.png);
+}
+
+.container{
+    background-color: white;
+    width: 50%;
+    height: auto;
+    margin: 30px auto;
+    padding: 40px 0px;
+    text-align: center;
+    border: 3px solid #0e1a40;
+    border-radius: 30px;
+
+
+}
+
+.gamename {
+    color: #222f5b;
+}
+
+.timeremaining{
+    color: #5d5d5d;
+}
+
+.question{
+    color: #222f5b;
+}
+.answer{
+    color: #946b2d;
+    background-color:#0e1a40;
+    display: inline-block;
+    padding: 10px;
+    margin: 10px;
+}
+
+.answer:hover{
+    box-shadow: 5px 5px 5px grey;
+    color: #bf9223;
+}
+
+hr {
+	border-top: 1px solid #8c8b8b;
+	border-bottom: 1px solid #fff;
+}
+hr:after {
+	content: '';
+	display: block;
+	margin-top: 2px;
+	border-top: 1px solid #8c8b8b;
+	border-bottom: 1px solid #fff;
+}
