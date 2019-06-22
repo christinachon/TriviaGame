@@ -7,7 +7,7 @@ var answer2 = ["answer1q2", "answer 2q2", "answer 3q2", "answer4q2"];
 var answer3 = ["answer1q3", "answer 2q3", "answer 3q3", "answer4q3"];
 var rightAnswers = 0;
 var wrongAnswers = 0;
-var selectedAnswer;
+var correctAnswer;
 
 function newGame(){
 //hides questions and answers
@@ -22,12 +22,17 @@ $(".start").click(function(){
 
 //display Q1 and Answers
 function questionOne(){
+    correctAnswer = answer1[1]
 $(".question").text(questions[0]);
 $(".answer1").text(answer1[0]);
 $(".answer2").text(answer1[1]);
 $(".answer3").text(answer1[2]);
 $(".answer4").text(answer1[3]);
 
+$('.answer1').click(function(){
+    $(".quizarea").hide();
+    loseScreen();
+});
 $('.answer2').click(function(){
     $(".quizarea").hide();
     winScreen();
@@ -40,20 +45,16 @@ $('.answer4').click(function(){
     $(".quizarea").hide();
     loseScreen();
 });
-$('.answer5').click(function(){
-    $(".quizarea").hide();
-    loseScreen();
-});
 };
 
 function winScreen(){
-    $(".transition").text("You're right.")
+    $(".transition").text("You're right! The answer is " + correctAnswer)
     rightAnswers++;
 
 }
 
 function loseScreen(){
-    $(".transition").text("You're wrong.")
+    $(".transition").text("You're wrong. The correct answer is " + correctAnswer)
     wrongAnswers++;
 }
 
