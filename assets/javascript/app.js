@@ -30,8 +30,8 @@ var myQuestions = [
         answers: {
             a: "Sectumsempra",
             b: "Expecto Patronum",
-            c: "Crucio",
-            d: "Stupefy",
+            c: "Stupefy",
+            d: "Crucio",
         },
         correctAnswer: "Crucio",
     },
@@ -57,7 +57,6 @@ function newGame(){
 $(".quizarea").hide();
 //starts game after start button is clicked
 $(".start").click(function(){
-    $(".quizarea").show();
     $(this).hide();
     displayQuestion();
 });
@@ -65,6 +64,7 @@ $(".start").click(function(){
 
 
 function displayQuestion(){
+    $(".quizarea").show();
     $(".question").text(myQuestions[count].question);
     $(".answer1").text(myQuestions[count].answers.a);
     $(".answer2").text(myQuestions[count].answers.b);
@@ -109,19 +109,27 @@ function displayQuestion(){
 
 
 function winScreen(){
+    $(".quizarea").hide();
     $(".transition").text("Correct! The answer is " + myQuestions[count].correctAnswer)
     rightAnswers++;
     count++;
     console.log(count);
-    displayQuestion();
+    setTimeout(function() {
+        $('.transition').fadeOut('fast');
+    }, 3000);
+    setTimeout(function() {displayQuestion();}, 3000);
 }
 
 function loseScreen(){
+    $(".quizarea").hide();
     $(".transition").text("Wrong! The correct answer is " + myQuestions[count].correctAnswer)
     wrongAnswers++;
     count++;
     console.log(count);
-    displayQuestion();
+    setTimeout(function() {
+        $('.transition').fadeOut('fast');
+    }, 3000);
+    setTimeout(function() {displayQuestion();}, 3000);
 }
 
 
