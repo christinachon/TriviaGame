@@ -72,7 +72,7 @@ function displayQuestion(){
     $(".answer4").text(myQuestions[count].answers.d);
 
     $(".answer1").click(function(){
-        if (myQuestions[count].answers.a.includes(myQuestions[count].correctAnswer)){
+        if (myQuestions[count].answers.a === myQuestions[count].correctAnswer){
             winScreen();
         } else{
             loseScreen();
@@ -80,7 +80,7 @@ function displayQuestion(){
     });
 
     $(".answer2").click(function(){
-        if (myQuestions[count].answers.b.includes(myQuestions[count].correctAnswer)){
+        if (myQuestions[count].answers.b === myQuestions[count].correctAnswer){
             winScreen();
         } else{
             loseScreen();
@@ -88,7 +88,7 @@ function displayQuestion(){
     });
 
     $(".answer3").click(function(){
-        if (myQuestions[count].answers.c.includes(myQuestions[count].correctAnswer)){
+        if (myQuestions[count].answers.c === myQuestions[count].correctAnswer){
             winScreen();
         } else{
             loseScreen();
@@ -96,7 +96,7 @@ function displayQuestion(){
     });
 
     $(".answer4").click(function(){
-        if (myQuestions[count].answers.d.includes(myQuestions[count].correctAnswer)){
+        if (myQuestions[count].answers.d === myQuestions[count].correctAnswer){
             winScreen();
         } else{
             loseScreen();
@@ -110,27 +110,39 @@ function displayQuestion(){
 
 function winScreen(){
     $(".quizarea").hide();
+    
+    if (count === 3){
+        gameOver();
+    } else {
     $(".transition").text("Correct! The answer is " + myQuestions[count].correctAnswer)
     rightAnswers++;
-    count++;
-    console.log(count);
     setTimeout(function() {
-        $('.transition').fadeOut('fast');
+     $('.transition').fadeOut('fast');
     }, 3000);
     setTimeout(function() {displayQuestion();}, 3000);
+    count++;
+    }
 }
 
 function loseScreen(){
     $(".quizarea").hide();
+    
+    if (count === 3){
+        gameOver();
+    } else {
     $(".transition").text("Wrong! The correct answer is " + myQuestions[count].correctAnswer)
     wrongAnswers++;
-    count++;
-    console.log(count);
-    setTimeout(function() {
+        setTimeout(function() {
         $('.transition').fadeOut('fast');
     }, 3000);
     setTimeout(function() {displayQuestion();}, 3000);
+    count++;
+};
 }
 
+function gameOver(){
+    $(".transition").show();
+    $(".transition").text("Game over! You got " + rightAnswers + " correct. You got " + wrongAnswers + " wrong.")
+}
 
 newGame()
