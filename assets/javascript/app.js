@@ -1,13 +1,56 @@
+// var questions = ["Which is not a Hogwarts house?", "this is question 2?", "this is question 3?"];
+// var answer1 = ["Ravenclaw", "Hinkypuff", "Slytherin", "Gryffindor"];
+// var answer2 = ["answer1q2", "answer 2q2", "answer 3q2", "answer4q2"];
+// var answer3 = ["answer1q3", "answer 2q3", "answer 3q3", "answer4q3"];
+
+//Reorganizing questions into objects
+var myQuestions = [
+    {
+        question: "Which is not a Hogwarts house?",
+        answers: {
+            a: "Ravenclaw",
+            b: "Hinkypuff",
+            c: "Slytherin",
+            d: "Gryffindor",
+        },
+        correctAnswer: "Hinkypuff",
+    },
+    {
+        question: "What position does Harry play on his Quidditch team?",
+        answers: {
+            a: "Seeker",
+            b: "Chaser",
+            c: "Keeper",
+            d: "Bludger",
+        },
+        correctAnswer: "Seeker",
+    },
+    {
+        question: "Which of these is an Unforgiveable Curse?",
+        answers: {
+            a: "Sectumsempra",
+            b: "Expecto Patronum",
+            c: "Crucio",
+            d: "Stupefy",
+        },
+        correctAnswer: "Crucio",
+    },
+    {
+        question: "Which of these spells will summon an object to you?",
+        answers: {
+            a: "Lumos",
+            b: "Accio",
+            c: "Wingardium Leviosa",
+            d: "Expelliarmus",
+        },
+        correctAnswer: "Accio",
+    }
+];
+
+var count = 0;
 var timeRemaining;
-var questions = ["Which is not a Hogwarts house?", "this is question 2?", "this is question 3?"];
-
-
-var answer1 = ["Ravenclaw", "Hinkypuff", "Slytherin", "Gryffindor"];
-var answer2 = ["answer1q2", "answer 2q2", "answer 3q2", "answer4q2"];
-var answer3 = ["answer1q3", "answer 2q3", "answer 3q3", "answer4q3"];
 var rightAnswers = 0;
 var wrongAnswers = 0;
-var correctAnswer;
 
 function newGame(){
 //hides questions and answers
@@ -16,46 +59,70 @@ $(".quizarea").hide();
 $(".start").click(function(){
     $(".quizarea").show();
     $(this).hide();
-    questionOne();
+    displayQuestion();
 });
 };
 
-//display Q1 and Answers
-function questionOne(){
-    correctAnswer = answer1[1]
-$(".question").text(questions[0]);
-$(".answer1").text(answer1[0]);
-$(".answer2").text(answer1[1]);
-$(".answer3").text(answer1[2]);
-$(".answer4").text(answer1[3]);
 
-$('.answer1').click(function(){
-    $(".quizarea").hide();
-    loseScreen();
-});
-$('.answer2').click(function(){
-    $(".quizarea").hide();
-    winScreen();
-});
-$('.answer3').click(function(){
-    $(".quizarea").hide();
-    loseScreen();
-});
-$('.answer4').click(function(){
-    $(".quizarea").hide();
-    loseScreen();
-});
-};
+function displayQuestion(){
+    $(".question").text(myQuestions[count].question);
+    $(".answer1").text(myQuestions[count].answers.a);
+    $(".answer2").text(myQuestions[count].answers.b);
+    $(".answer3").text(myQuestions[count].answers.c);
+    $(".answer4").text(myQuestions[count].answers.d);
+
+    $(".answer1").click(function(){
+        if (myQuestions[count].answers.a.includes(myQuestions[count].correctAnswer)){
+            winScreen();
+        } else{
+            loseScreen();
+        }
+    });
+
+    $(".answer2").click(function(){
+        if (myQuestions[count].answers.b.includes(myQuestions[count].correctAnswer)){
+            winScreen();
+        } else{
+            loseScreen();
+        }
+    });
+
+    $(".answer3").click(function(){
+        if (myQuestions[count].answers.c.includes(myQuestions[count].correctAnswer)){
+            winScreen();
+        } else{
+            loseScreen();
+        }
+    });
+
+    $(".answer4").click(function(){
+        if (myQuestions[count].answers.d.includes(myQuestions[count].correctAnswer)){
+            winScreen();
+        } else{
+            loseScreen();
+        }
+    });
+
+
+
+    }
+
 
 function winScreen(){
-    $(".transition").text("You're right! The answer is " + correctAnswer)
+    $(".transition").text("Correct! The answer is " + myQuestions[count].correctAnswer)
     rightAnswers++;
-
+    count++;
+    console.log(count);
+    displayQuestion();
 }
 
 function loseScreen(){
-    $(".transition").text("You're wrong. The correct answer is " + correctAnswer)
+    $(".transition").text("Wrong! The correct answer is " + myQuestions[count].correctAnswer)
     wrongAnswers++;
+    count++;
+    console.log(count);
+    displayQuestion();
 }
+
 
 newGame()
