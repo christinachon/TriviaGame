@@ -1,9 +1,3 @@
-// var questions = ["Which is not a Hogwarts house?", "this is question 2?", "this is question 3?"];
-// var answer1 = ["Ravenclaw", "Hinkypuff", "Slytherin", "Gryffindor"];
-// var answer2 = ["answer1q2", "answer 2q2", "answer 3q2", "answer4q2"];
-// var answer3 = ["answer1q3", "answer 2q3", "answer 3q3", "answer4q3"];
-
-//Reorganizing questions into objects
 var myQuestions = [
     {
         question: "Which is not a Hogwarts house?",
@@ -46,103 +40,107 @@ var myQuestions = [
         correctAnswer: "Accio",
     }
 ];
-
 var count = 0;
 var timeRemaining;
 var rightAnswers = 0;
 var wrongAnswers = 0;
 
-function newGame(){
-//hides questions and answers
-$(".quizarea").hide();
-//starts game after start button is clicked
-$(".start").click(function(){
-    $(this).hide();
-    displayQuestion();
-});
+$(document).ready(main);
+
+function main (){
+    newGame();
+    initializeEvents();
+}
+
+function newGame() {
+    //hides questions and answers
+    $(".quizarea").hide();
+    //starts game after start button is clicked
+    $(".start").click(function () {
+        $(this).hide();
+        displayQuestion();
+    });
 };
 
 
-function displayQuestion(){
+function displayQuestion() {
     $(".quizarea").show();
     $(".question").text(myQuestions[count].question);
     $(".answer1").text(myQuestions[count].answers.a);
     $(".answer2").text(myQuestions[count].answers.b);
     $(".answer3").text(myQuestions[count].answers.c);
     $(".answer4").text(myQuestions[count].answers.d);
+}
 
-    $(".answer1").click(function(){
-        if (myQuestions[count].answers.a === myQuestions[count].correctAnswer){
-            winScreen();
-        } else{
-            loseScreen();
-        }
-    });
-
-    $(".answer2").click(function(){
-        if (myQuestions[count].answers.b === myQuestions[count].correctAnswer){
-            winScreen();
-        } else{
-            loseScreen();
-        }
-    });
-
-    $(".answer3").click(function(){
-        if (myQuestions[count].answers.c === myQuestions[count].correctAnswer){
-            winScreen();
-        } else{
-            loseScreen();
-        }
-    });
-
-    $(".answer4").click(function(){
-        if (myQuestions[count].answers.d === myQuestions[count].correctAnswer){
-            winScreen();
-        } else{
-            loseScreen();
-        }
-    });
-
-
-
+function initializeEvents(){
+$(".answer1").click(function () {
+    if (myQuestions[count].answers.a === myQuestions[count].correctAnswer) {
+        winScreen();
+    } else {
+        loseScreen();
     }
+});
 
+$(".answer2").click(function () {
+    if (myQuestions[count].answers.b === myQuestions[count].correctAnswer) {
+        winScreen();
+    } else {
+        loseScreen();
+    }
+});
 
-function winScreen(){
+$(".answer3").click(function () {
+    if (myQuestions[count].answers.c === myQuestions[count].correctAnswer) {
+        winScreen();
+    } else {
+        loseScreen();
+    }
+});
+
+$(".answer4").click(function () {
+    if (myQuestions[count].answers.d === myQuestions[count].correctAnswer) {
+        winScreen();
+    } else {
+        loseScreen();
+    }
+});
+}
+
+function winScreen() {
     $(".quizarea").hide();
-    
-    if (count === 3){
+
+    if (count === 3) {
         gameOver();
     } else {
-    $(".transition").text("Correct! The answer is " + myQuestions[count].correctAnswer)
-    rightAnswers++;
-    setTimeout(function() {
-     $('.transition').fadeOut('fast');
-    }, 3000);
-    setTimeout(function() {displayQuestion();}, 3000);
-    count++;
+        rightAnswers++;
+        $(".transition").text("Correct! The answer is " + myQuestions[count].correctAnswer)
+        $(".transition").show();
+        setTimeout(function () {
+            $('.transition').fadeOut('fast');
+        }, 3000);
+        setTimeout(function () { displayQuestion(); }, 3000);
+        count++;
     }
 }
 
-function loseScreen(){
+function loseScreen() {
     $(".quizarea").hide();
-    
-    if (count === 3){
+
+    if (count === 3) {
         gameOver();
     } else {
-    $(".transition").text("Wrong! The correct answer is " + myQuestions[count].correctAnswer)
-    wrongAnswers++;
-        setTimeout(function() {
-        $('.transition').fadeOut('fast');
-    }, 3000);
-    setTimeout(function() {displayQuestion();}, 3000);
-    count++;
-};
+        wrongAnswers++;
+        $(".transition").text("Wrong! The correct answer is " + myQuestions[count].correctAnswer)
+        $(".transition").show();
+        setTimeout(function () {
+            $('.transition').fadeOut('fast');
+        }, 3000);
+        setTimeout(function () { displayQuestion(); }, 3000);
+        count++;
+    };
 }
 
-function gameOver(){
+function gameOver() {
     $(".transition").show();
     $(".transition").text("Game over! You got " + rightAnswers + " correct. You got " + wrongAnswers + " wrong.")
 }
-
-newGame()
