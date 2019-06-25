@@ -107,9 +107,11 @@ $(".answer4").click(function () {
 }
 
 function winScreen() {
+
     $(".quizarea").hide();
 
     if (count === 3) {
+        rightAnswers++;
         gameOver();
     } else {
         rightAnswers++;
@@ -120,13 +122,16 @@ function winScreen() {
         }, 3000);
         setTimeout(function () { displayQuestion(); }, 3000);
         count++;
-    }
+    }console.log("right"+ rightAnswers);
+    console.log("wrong"+ wrongAnswers);
 }
 
 function loseScreen() {
+
     $(".quizarea").hide();
 
     if (count === 3) {
+        wrongAnswers++;
         gameOver();
     } else {
         wrongAnswers++;
@@ -138,6 +143,8 @@ function loseScreen() {
         setTimeout(function () { displayQuestion(); }, 3000);
         count++;
     };
+        console.log("right"+ rightAnswers);
+    console.log("wrong"+ wrongAnswers);
 }
 
 function gameOver() {
