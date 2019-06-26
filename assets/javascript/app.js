@@ -47,17 +47,19 @@ var wrongAnswers = 0;
 
 $(document).ready(main);
 
-function main (){
+function main() {
     newGame();
     initializeEvents();
 }
 
 function newGame() {
-    //hides questions and answers
+    count = 0;
+    rightAnswers = 0;
+    wrongAnswers = 0;
     $(".quizarea").hide();
-    //starts game after start button is clicked
     $(".start").click(function () {
         $(this).hide();
+        $(".transition").hide()
         displayQuestion();
     });
 };
@@ -72,38 +74,38 @@ function displayQuestion() {
     $(".answer4").text(myQuestions[count].answers.d);
 }
 
-function initializeEvents(){
-$(".answer1").click(function () {
-    if (myQuestions[count].answers.a === myQuestions[count].correctAnswer) {
-        winScreen();
-    } else {
-        loseScreen();
-    }
-});
+function initializeEvents() {
+    $(".answer1").click(function () {
+        if (myQuestions[count].answers.a === myQuestions[count].correctAnswer) {
+            winScreen();
+        } else {
+            loseScreen();
+        }
+    });
 
-$(".answer2").click(function () {
-    if (myQuestions[count].answers.b === myQuestions[count].correctAnswer) {
-        winScreen();
-    } else {
-        loseScreen();
-    }
-});
+    $(".answer2").click(function () {
+        if (myQuestions[count].answers.b === myQuestions[count].correctAnswer) {
+            winScreen();
+        } else {
+            loseScreen();
+        }
+    });
 
-$(".answer3").click(function () {
-    if (myQuestions[count].answers.c === myQuestions[count].correctAnswer) {
-        winScreen();
-    } else {
-        loseScreen();
-    }
-});
+    $(".answer3").click(function () {
+        if (myQuestions[count].answers.c === myQuestions[count].correctAnswer) {
+            winScreen();
+        } else {
+            loseScreen();
+        }
+    });
 
-$(".answer4").click(function () {
-    if (myQuestions[count].answers.d === myQuestions[count].correctAnswer) {
-        winScreen();
-    } else {
-        loseScreen();
-    }
-});
+    $(".answer4").click(function () {
+        if (myQuestions[count].answers.d === myQuestions[count].correctAnswer) {
+            winScreen();
+        } else {
+            loseScreen();
+        }
+    });
 }
 
 function winScreen() {
@@ -122,8 +124,7 @@ function winScreen() {
         }, 3000);
         setTimeout(function () { displayQuestion(); }, 3000);
         count++;
-    }console.log("right"+ rightAnswers);
-    console.log("wrong"+ wrongAnswers);
+    }
 }
 
 function loseScreen() {
@@ -143,11 +144,12 @@ function loseScreen() {
         setTimeout(function () { displayQuestion(); }, 3000);
         count++;
     };
-        console.log("right"+ rightAnswers);
-    console.log("wrong"+ wrongAnswers);
+
 }
 
 function gameOver() {
     $(".transition").show();
-    $(".transition").text("Game over! You got " + rightAnswers + " correct. You got " + wrongAnswers + " wrong.")
+    $(".transition").text("Game over! You got " + rightAnswers + " correct. You got " + wrongAnswers + " wrong.");
+    $(".start").show();
+    newGame();
 }
