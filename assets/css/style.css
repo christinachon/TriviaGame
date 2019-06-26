@@ -38,7 +38,7 @@ body{
 }
 
 .answer:hover{
-    box-shadow: 5px 5px 5px grey;
+    box-shadow: 5px 5px 5px ;
     color: #bf9223;
 }
 
@@ -52,4 +52,15 @@ hr:after {
 	margin-top: 2px;
 	border-top: 1px solid #8c8b8b;
 	border-bottom: 1px solid #fff;
+}
+
+.start {
+    background-color: white;
+    padding: 5px;
+    border: 5px double #0e1a40;
+
+}
+
+.start:hover{
+    background-color:#8c8b8b;
 }
