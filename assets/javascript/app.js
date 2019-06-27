@@ -48,6 +48,7 @@ var wrongAnswers = 0;
 $(document).ready(main);
 
 function main() {
+
     newGame();
     initializeEvents();
 }
@@ -57,11 +58,6 @@ function newGame() {
     rightAnswers = 0;
     wrongAnswers = 0;
     $(".quizarea").hide();
-    $(".start").click(function () {
-        $(this).hide();
-        $(".transition").hide()
-        displayQuestion();
-    });
 };
 
 
@@ -75,10 +71,12 @@ function displayQuestion() {
     $(".answer4").text(myQuestions[count].answers.d);
 }
 
-var timer;
+let timer;
 
 function startTimer() {
-    timer = setInterval(decrement, 1000)
+ 
+    timer = setInterval(decrement, 1000);
+
     $(".timeremaining").html("Time remaining: " + timeRemaining);
 
 }
@@ -99,6 +97,12 @@ function decrement() {
 
 
 function initializeEvents() {
+
+    $(".start").click(function () {
+        $(this).hide();
+        $(".transition").hide()
+        displayQuestion();
+    });
     $(".answer1").click(function () {
         if (myQuestions[count].answers.a === myQuestions[count].correctAnswer) {
             winScreen();
@@ -145,8 +149,8 @@ function winScreen() {
         $(".transition").show();
         setTimeout(function () {
             $('.transition').hide();
-        }, 3000);
-        setTimeout(function () { displayQuestion(); }, 3000);
+        }, 2000);
+        setTimeout(function () { displayQuestion(); }, 2000);
         count++;
     }
 }
@@ -164,15 +168,15 @@ function loseScreen() {
         $(".transition").show();
         setTimeout(function () {
             $('.transition').hide();
-        }, 3000);
-        setTimeout(function () { displayQuestion(); }, 3000);
+        }, 2000);
+        setTimeout(function () { displayQuestion(); }, 2000);
         count++;
     };
 
 }
 
 function gameOver() {
-    stopTimer()
+    stopTimer();
     $(".transition").show();
     $(".transition").text("Game over! You got " + rightAnswers + " correct. You got " + wrongAnswers + " wrong.");
     $(".start").show();
