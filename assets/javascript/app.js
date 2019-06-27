@@ -144,7 +144,7 @@ function winScreen() {
         $(".transition").text("Correct! The answer is " + myQuestions[count].correctAnswer)
         $(".transition").show();
         setTimeout(function () {
-            $('.transition').fadeOut('fast');
+            $('.transition').hide();
         }, 3000);
         setTimeout(function () { displayQuestion(); }, 3000);
         count++;
